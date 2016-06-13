@@ -1,12 +1,15 @@
 package io.codearte.jfairy;
 
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 import io.codearte.jfairy.data.DataMaster;
 import io.codearte.jfairy.producer.VATIdentificationNumberProvider;
 import io.codearte.jfairy.producer.company.locale.pl.NIPProvider;
 import io.codearte.jfairy.producer.person.NationalIdentityCardNumberProvider;
 import io.codearte.jfairy.producer.person.PassportNumberProvider;
+import io.codearte.jfairy.producer.person.locale.pl.PeselFactory;
 import io.codearte.jfairy.producer.person.locale.pl.PlIdentityCardNumberProvider;
 import io.codearte.jfairy.producer.person.locale.pl.PlPassportNumberProvider;
+import io.codearte.jfairy.producer.person.locale.sv.PersonalIdentityNumberFactory;
 import io.codearte.jfairy.producer.util.CharConverter;
 import io.codearte.jfairy.producer.util.locale.PlCharConverter;
 
@@ -25,6 +28,7 @@ public class PlFairyModule extends FairyModule {
 	@Override
 	protected void configure() {
 		super.configure();
+		install(new FactoryModuleBuilder().build(PeselFactory.class));
 		bind(NationalIdentityCardNumberProvider.class).to(PlIdentityCardNumberProvider.class);
 		bind(VATIdentificationNumberProvider.class).to(NIPProvider.class);
 		bind(PassportNumberProvider.class).to(PlPassportNumberProvider.class);

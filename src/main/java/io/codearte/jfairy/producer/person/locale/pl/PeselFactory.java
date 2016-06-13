@@ -1,7 +1,10 @@
 package io.codearte.jfairy.producer.person.locale.pl;
 
-public interface PeselFactory {
+import io.codearte.jfairy.producer.person.NationalIdentificationNumberFactory;
+import io.codearte.jfairy.producer.person.NationalIdentificationNumberProperties;
 
-	PeselProvider producePeselProvider(PeselProperties.Property... properties);
+public interface PeselFactory extends NationalIdentificationNumberFactory {
+
+	PeselProvider produceNationalIdentificationNumberProvider(NationalIdentificationNumberProperties.Property... properties);
 
 }
