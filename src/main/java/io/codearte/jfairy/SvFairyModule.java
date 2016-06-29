@@ -6,7 +6,7 @@ import io.codearte.jfairy.producer.company.locale.sv.SvVATIdentificationNumberPr
 import io.codearte.jfairy.producer.person.NationalIdentificationNumberFactory;
 import io.codearte.jfairy.producer.person.NationalIdentityCardNumberProvider;
 import io.codearte.jfairy.producer.person.PassportNumberProvider;
-import io.codearte.jfairy.producer.person.locale.sv.PersonalIdentityNumberFactory;
+import io.codearte.jfairy.producer.person.locale.sv.SvNationalIdentificationNumberFactory;
 import io.codearte.jfairy.producer.person.locale.sv.SvNationalIdentityCardNumberProvider;
 import io.codearte.jfairy.producer.person.locale.sv.SvPassportNumberProvider;
 import io.codearte.jfairy.producer.util.CharConverter;
@@ -23,7 +23,7 @@ public class SvFairyModule extends FairyModule {
 	@Override
 	protected void configure() {
 		super.configure();
-		bind(NationalIdentificationNumberFactory.class).to(PersonalIdentityNumberFactory.class);
+		bind(NationalIdentificationNumberFactory.class).to(SvNationalIdentificationNumberFactory.class);
 		bind(NationalIdentityCardNumberProvider.class).to(SvNationalIdentityCardNumberProvider.class);
 		bind(VATIdentificationNumberProvider.class).to(SvVATIdentificationNumberProvider.class);
 		bind(PassportNumberProvider.class).to(SvPassportNumberProvider.class);
