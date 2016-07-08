@@ -28,7 +28,7 @@ class CreditCardProducerSpec extends Specification {
 		when:
 			CreditCard cardProducer = new CreditCard(dataMaster, dateProducer)
 		then:
-			cardProducer.vendor()
+			cardProducer.getVendor()
 	}
 
 	def "should return card expiry date"() {
@@ -37,7 +37,7 @@ class CreditCardProducerSpec extends Specification {
 		when:
 			CreditCard cardProducer = new CreditCard(dataMaster, dateProducer)
 		then:
-			cardProducer.expiryDate() == EXPIRY_DATE
+			cardProducer.getExpiryDate() == EXPIRY_DATE
 	}
 
 	def "should return card expiry date string"() {
@@ -46,7 +46,7 @@ class CreditCardProducerSpec extends Specification {
 		when:
 			CreditCard cardProducer = new CreditCard(dataMaster, dateProducer)
 		then:
-			cardProducer.expiryDateAsString() == "02/09"
+			cardProducer.getExpiryDateAsString() == "02/09"
 	}
 
 
