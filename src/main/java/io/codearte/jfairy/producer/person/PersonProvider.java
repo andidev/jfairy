@@ -137,7 +137,7 @@ public class PersonProvider implements Provider<Person> {
 		}
 
 		if (companyEmail == null) {
-			companyEmail = stripAccents(lowerCase(firstName + '.' + lastName + '@' + company.domain()));
+			companyEmail = stripAccents(lowerCase(firstName + '.' + lastName + '@' + company.getDomain()));
 		}
 		if (password == null) {
 			// FIXME: Replace this with baseProducer
