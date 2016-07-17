@@ -46,7 +46,7 @@ public class CompanyProvider implements Provider<Company> {
 
 		if (name == null) {
 			name = dataMaster.getRandomValue(COMPANY_NAME);
-			if (baseProducer.trueOrFalse()) {
+			if (baseProducer.randomBoolean()) {
 				name += " " + dataMaster.getRandomValue(COMPANY_SUFFIX);
 			}
 		}

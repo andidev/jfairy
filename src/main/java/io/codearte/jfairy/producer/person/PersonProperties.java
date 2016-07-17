@@ -46,7 +46,7 @@ public final class PersonProperties {
 		return new PersonProperty() {
 			@Override
 			public void apply(PersonProvider person, BaseProducer baseProducer) {
-				person.setAge(baseProducer.randomBetween(minAge, maxAge));
+				person.setAge(baseProducer.randomIntBetween(minAge, maxAge));
 				minimumAge = Optional.of(minAge);
 				maximumAge = Optional.of(maxAge);
 			}

@@ -28,7 +28,7 @@ class PlNationalIdentityCardNumberProviderSpec extends Specification {
 	void "should generate proper id number"() {
 		def max = (2013 - ISSUING_BEGIN) * LETTER_WEIGHT
 		setup:
-			baseProducer.randomBetween(max, max + LETTER_WEIGHT) >> ('A'..'Z').size() // ABA
+			baseProducer.randomIntBetween(max, max + LETTER_WEIGHT) >> ('A'..'Z').size() // ABA
 			baseProducer.randomInt(MAX_DIGITS_PART_VALUE) >> 0
 		when:
 			PlNationalIdentityCardNumberProvider generator = new PlNationalIdentityCardNumberProvider(dateGenerator, baseProducer)

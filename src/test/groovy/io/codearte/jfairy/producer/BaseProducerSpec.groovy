@@ -12,8 +12,8 @@ class BaseProducerSpec extends Specification {
 	def baseProducer = Spy(BaseProducer, constructorArgs: [new Random()]);
 
 	def setup() {
-		baseProducer.randomBetween('0', '9') >> '7'
-		baseProducer.randomBetween('a', 'z') >> 'x'
+		baseProducer.randomCharBetween('0', '9') >> '7'
+		baseProducer.randomCharBetween('a', 'z') >> 'x'
 	}
 
 	def "should replace # with digit 7"() {
@@ -44,7 +44,7 @@ class BaseProducerSpec extends Specification {
 			def randomGenerator = new BaseProducer(new Random());
 
 		expect:
-			def between = randomGenerator.randomBetween(from, to)
+			def between = randomGenerator.randomDoubleBetween(from, to)
 
 			between >= from
 			between <= to
@@ -65,14 +65,14 @@ class BaseProducerSpec extends Specification {
 
 	def "should retrieve random enum element"() {
 		setup:
-			baseProducer.randomBetween(0, 2) >> 1
+			baseProducer.randomIntBetween(0, 2) >> 1
 		expect:
 			TestEnum.B == baseProducer.randomElement(TestEnum)
 	}
 
 	def "should retrieve random vararg element"() {
 		setup:
-			baseProducer.randomBetween(0, 2) >> 1
+			baseProducer.randomIntBetween(0, 2) >> 1
 		expect:
 			'B' == baseProducer.randomElement('A', 'B', 'C')
 	}

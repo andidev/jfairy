@@ -107,7 +107,7 @@ public class PlNationalIdentityCardNumberProvider implements NationalIdentityCar
 
 	private void fillLettersPart(int year, char[] id) {
 		int maxPrefix = (year - ISSUING_BEGIN) * LETTER_WEIGHT;
-		int range = baseProducer.randomBetween(maxPrefix, maxPrefix + LETTER_WEIGHT);
+		int range = baseProducer.randomIntBetween(maxPrefix, maxPrefix + LETTER_WEIGHT);
 		String prefix = AlphaNumberSystem.convertToString(range, ALPHABET_SIZE);
 		char[] charArray = leftPad(prefix, LETTERS_PART_SIZE, 'A').toCharArray();
 		arraycopy(charArray, 0, id, 0, charArray.length);

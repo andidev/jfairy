@@ -25,7 +25,7 @@ public class BaseProducer {
 	 *
 	 * @return random boolean
 	 */
-	public boolean trueOrFalse() {
+	public boolean randomBoolean() {
 		return random.nextBoolean();
 	}
 
@@ -37,7 +37,7 @@ public class BaseProducer {
 	 * @return random list element
 	 */
 	public <T> T randomElement(List<T> elements) {
-		return elements.get(randomBetween(0, elements.size() - 1));
+		return elements.get(randomIntBetween(0, elements.size() - 1));
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class BaseProducer {
 	 * @return random enum value
 	 */
 	public <T extends Enum<?>> T randomElement(Class<T> enumType) {
-		return enumType.getEnumConstants()[randomBetween(0, enumType.getEnumConstants().length - 1)];
+		return enumType.getEnumConstants()[randomIntBetween(0, enumType.getEnumConstants().length - 1)];
 	}
 
 	/**
@@ -90,29 +90,28 @@ public class BaseProducer {
 	/**
 	 * Returns random int value
 	 *
-	 * @param min value of the random number to be returned.  Must be positive.
 	 * @param max value of the random number to be returned.  Must be positive.
-	 * @return random {@code int} value between {@code min} (inclusive) and {@code max} (inclusive)
+	 * @return random {@code int} value between 0 (inclusive) and {@code max} (inclusive)
 	 */
-	public int randomBetween(int min, int max) {
-		int range = max - min + 1;
-		int randomInt = range > 0 ? this.random.nextInt(range) : 0;
-		return min + randomInt;
+	public int randomInt(int max) {
+		return randomIntBetween(0, max);
 	}
 
 	/**
 	 * Returns random int value
 	 *
+	 * @param min value of the random number to be returned.  Must be positive.
 	 * @param max value of the random number to be returned.  Must be positive.
-	 * @return random {@code int} value between 0 (inclusive) and {@code max} (inclusive)
+	 * @return random {@code int} value between {@code min} (inclusive) and {@code max} (inclusive)
 	 */
-	public int randomInt(int max) {
-		return randomBetween(0, max);
+	public int randomIntBetween(int min, int max) {
+		int range = max - min + 1;
+		int randomInt = range > 0 ? this.random.nextInt(range) : 0;
+		return min + randomInt;
 	}
 
-	//TODO: MZA: Duplication - should be merged into one method when consistent logic will be determined
-	public char randomBetween(char min, char max) {
-		return (char) randomBetween((int) min, (int) max);
+	public char randomCharBetween(char min, char max) {
+		return (char) randomIntBetween((int) min, (int) max);
 	}
 
 	/**
@@ -123,7 +122,7 @@ public class BaseProducer {
 	 * @param max higher bound of a range
 	 * @return pseudorandom {@code long} value between {@code mon} (inclusive) and {@code max} (inclusive)
 	 */
-	public long randomBetween(long min, long max) {
+	public long randomLongBetween(long min, long max) {
 		Preconditions.checkArgument(min <= max, "%s has to be <= %s", min, max);
 		//Can it be done easier for long numbers?
 		long range = (max - min) + 1;
@@ -137,7 +136,7 @@ public class BaseProducer {
 	 * @param max value of the random number to be returned.  Must be positive.
 	 * @return random {@code double} value between {@code min} (inclusive) and {@code max} (inclusive)
 	 */
-	public double randomBetween(double min, double max) {
+	public double randomDoubleBetween(double min, double max) {
 		double range = max - min;
 		double randomDouble = range > 0 ? this.random.nextDouble() * range : 0;
 		return min + randomDouble;
@@ -201,7 +200,7 @@ public class BaseProducer {
 		StringBuilder result = new StringBuilder();
 		for (char aChar : string.toCharArray()) {
 			if (aChar == symbol) {
-				result.append(randomBetween(from, to));
+				result.append(randomCharBetween(from, to));
 			} else {
 				result.append(aChar);
 			}

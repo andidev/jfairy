@@ -38,7 +38,7 @@ public abstract class AbstractAddressProvider implements AddressProvider {
 	}
 
 	public String getApartmentNumber() {
-		return baseProducer.trueOrFalse() ? String.valueOf(baseProducer.randomInt(350)) : "";
+		return baseProducer.randomBoolean() ? String.valueOf(baseProducer.randomInt(350)) : "";
 	}
 
 }

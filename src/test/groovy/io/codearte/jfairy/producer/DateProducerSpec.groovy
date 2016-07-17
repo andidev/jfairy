@@ -34,7 +34,7 @@ class DateProducerSpec extends Specification {
 
 	def "should generate date in the past"() {
 		given:
-			baseProducer.randomBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
+			baseProducer.randomLongBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
 					SOME_DATE_IN_THE_PAST_IN_MILLIS
 		when:
 			def dateInThePast = sut.randomDateInThePast(MAX_YEARS_IN_THE_PAST)
@@ -46,7 +46,7 @@ class DateProducerSpec extends Specification {
 
 	def "should fail generate date in the past if passed value is negative"() {
 		given:
-			baseProducer.randomBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
+			baseProducer.randomLongBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
 					SOME_DATE_IN_THE_PAST_IN_MILLIS
 		when:
 			sut.randomDateInThePast(-MAX_YEARS_IN_THE_PAST)
@@ -56,7 +56,7 @@ class DateProducerSpec extends Specification {
 
 	def "should be able to reach minimum date for date in the past"() {
 		given:
-			baseProducer.randomBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
+			baseProducer.randomLongBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
 					FIVE_YEARS_EARLIER_DATE_IN_MILLIS
 		when:
 			def dateInThePast = sut.randomDateInThePast(MAX_YEARS_IN_THE_PAST)
@@ -66,7 +66,7 @@ class DateProducerSpec extends Specification {
 
 	def "maximum date should be before now with defined offset for date in the past"() {
 		given:
-			baseProducer.randomBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
+			baseProducer.randomLongBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
 					LATEST_DATE_IN_THE_PAST_IN_MILLIS
 		when:
 			def dateInThePast = sut.randomDateInThePast(MAX_YEARS_IN_THE_PAST)
@@ -77,7 +77,7 @@ class DateProducerSpec extends Specification {
 	@Unroll
 	def "should generate date between years #fromYear - #toYear"() {
 		given:
-			baseProducer.randomBetween(_, _) >> { args -> (args[1] + args[0]) / 2 }
+			baseProducer.randomLongBetween(_, _) >> { args -> (args[1] + args[0]) / 2 }
 		expect:
 			sut.randomDateBetweenYears(fromYear, toYear) == expectedDate
 		where:
@@ -89,7 +89,7 @@ class DateProducerSpec extends Specification {
 
 	def "should generate date between specified year and now"() {
 		given:
-			baseProducer.randomBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
+			baseProducer.randomLongBetween(FIVE_YEARS_EARLIER_DATE_IN_MILLIS, LATEST_DATE_IN_THE_PAST_IN_MILLIS) >>
 					SOME_DATE_IN_THE_PAST_IN_MILLIS
 		when:
 			def dateInThePast = sut.randomDateBetweenYearAndNow(2008)

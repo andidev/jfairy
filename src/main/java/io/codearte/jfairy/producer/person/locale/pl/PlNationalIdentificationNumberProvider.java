@@ -64,7 +64,7 @@ public class PlNationalIdentificationNumberProvider implements NationalIdentific
 			issueDate = dateProducer.randomDateInThePast(VALIDITY_IN_YEARS);
 		}
 		if (sex == null) {
-			sex = baseProducer.trueOrFalse() ? Person.Sex.MALE : Person.Sex.FEMALE;
+			sex = baseProducer.randomBoolean() ? Person.Sex.MALE : Person.Sex.FEMALE;
 		}
 
 		return new NationalIdentificationNumber(generate());

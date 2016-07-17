@@ -49,7 +49,7 @@ public class EnVATIdentificationNumberProvider implements VATIdentificationNumbe
 	}
 
 	private void fillSerialNumber(char[] ein) {
-		String number = valueOf(baseProducer.randomBetween(1, 9999));
+		String number = valueOf(baseProducer.randomIntBetween(1, 9999));
 		char[] digits = leftPad(number, SERIAL_NUMBER_LENGTH, "0").toCharArray();
 		arraycopy(digits, 0, ein, SERIAL_NUMBER_INDEX, digits.length);
 	}
@@ -58,7 +58,7 @@ public class EnVATIdentificationNumberProvider implements VATIdentificationNumbe
 	private void fillAreaNumber(char[] ein) {
 		Integer number;
 		do {
-			number = baseProducer.randomBetween(0, 99);
+			number = baseProducer.randomIntBetween(0, 99);
 		} while (excludedNumbers.contains(number));
 		char[] digits = leftPad(number.toString(), AREA_NUMBER_LENGTH, "0").toCharArray();
 		arraycopy(digits, 0, ein, 0, digits.length);

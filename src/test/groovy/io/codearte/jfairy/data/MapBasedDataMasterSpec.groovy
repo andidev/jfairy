@@ -14,7 +14,7 @@ class MapBasedDataMasterSpec extends Specification {
 	def data = Spy(MapBasedDataMaster, constructorArgs: [baseProducer])
 
 	def setup() {
-		baseProducer.randomBetween() >> 0
+		baseProducer.randomDoubleBetween() >> 0
 	}
 
 	def "should read first names"() {

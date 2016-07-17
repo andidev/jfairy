@@ -9,7 +9,6 @@ import io.codearte.jfairy.producer.DateProducer;
 import io.codearte.jfairy.producer.TimeProvider;
 import io.codearte.jfairy.producer.company.Company;
 import io.codearte.jfairy.producer.company.CompanyFactory;
-import io.codearte.jfairy.producer.company.CompanyProvider;
 import io.codearte.jfairy.producer.util.CharConverter;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.joda.time.DateTime;
@@ -130,7 +129,7 @@ public class PersonProvider implements Provider<Person> {
 			age = Years.yearsBetween(dateOfBirth, DateTime.now()).getYears();
 		}
 		if (age == null) {
-			age = baseProducer.randomBetween(MIN_AGE, MAX_AGE);
+			age = baseProducer.randomIntBetween(MIN_AGE, MAX_AGE);
 		}
 		if (dateOfBirth == null) {
 			dateOfBirth = generateDateOfBirth();
@@ -170,7 +169,7 @@ public class PersonProvider implements Provider<Person> {
 	}
 
 	private boolean randomBoolean() {
-		return baseProducer.trueOrFalse();
+		return baseProducer.randomBoolean();
 	}
 
 	private String nationalIdentificationNumber() {

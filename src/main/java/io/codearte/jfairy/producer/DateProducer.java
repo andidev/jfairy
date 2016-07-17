@@ -42,7 +42,7 @@ public class DateProducer {
 	}
 
 	public DateTime randomDateBetweenTwoDates(DateTime from, DateTime to) {
-		return new DateTime(baseProducer.randomBetween(from.getMillis(), to.getMillis()));
+		return new DateTime(baseProducer.randomLongBetween(from.getMillis(), to.getMillis()));
 	}
 
 	public DateTime randomDateBetweenYears(int fromYear, int toYear) {
@@ -62,7 +62,7 @@ public class DateProducer {
 
 	public DateTime randomDateBetweenNowAndFuturePeriod(Period futurePeriod) {
 		DateTime now = timeProvider.getCurrentDate();
-		return new DateTime(baseProducer.randomBetween(now.getMillis(), now.plus(futurePeriod).getMillis()));
+		return new DateTime(baseProducer.randomLongBetween(now.getMillis(), now.plus(futurePeriod).getMillis()));
 	}
 
 	public DateTime randomDateInTheFuture(int years) {

@@ -123,7 +123,7 @@ public class IBANProvider implements Provider<IBAN> {
 		BbanStructureEntry entry = extractBbanEntry(countryCode, type);
 		if (entry != null) {
 			int length = entry.getLength();
-			value = "" + baseProducer.randomBetween(0L, BigInteger.TEN.pow(length).longValue() - 1);
+			value = "" + baseProducer.randomLongBetween(0L, BigInteger.TEN.pow(length).longValue() - 1);
 			value = StringUtils.leftPad(value, length, "0");
 		}
 		return value;

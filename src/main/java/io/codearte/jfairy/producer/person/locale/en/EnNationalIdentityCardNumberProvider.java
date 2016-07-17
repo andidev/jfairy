@@ -3,7 +3,6 @@ package io.codearte.jfairy.producer.person.locale.en;
 import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 import io.codearte.jfairy.producer.BaseProducer;
-import io.codearte.jfairy.producer.VATIdentificationNumberProvider;
 import io.codearte.jfairy.producer.person.NationalIdentityCardNumberProvider;
 
 import java.util.List;
@@ -59,20 +58,20 @@ public class EnNationalIdentityCardNumberProvider implements NationalIdentityCar
 	private void fillAreaNumber(char[] ssn) {
 		String number;
 		do {
-			number = valueOf(baseProducer.randomBetween(1, 899));
+			number = valueOf(baseProducer.randomIntBetween(1, 899));
 		} while (number.equals("666"));
 		char[] digits = leftPad(number, AREA_NUMBER_LENGTH, "0").toCharArray();
 		arraycopy(digits, 0, ssn, 0, digits.length);
 	}
 
 	private void fillGroupNumber(char[] ssn) {
-		String number = valueOf(baseProducer.randomBetween(1, 99));
+		String number = valueOf(baseProducer.randomIntBetween(1, 99));
 		char[] digits = leftPad(number, GROUP_NUMBER_LENGTH, "0").toCharArray();
 		arraycopy(digits, 0, ssn, GROUP_NUMBER_INDEX, digits.length);
 	}
 
 	private void fillSerialNumber(char[] ssn) {
-		String number = valueOf(baseProducer.randomBetween(1, 9999));
+		String number = valueOf(baseProducer.randomIntBetween(1, 9999));
 		char[] digits = leftPad(number, SERIAL_NUMBER_LENGTH, "0").toCharArray();
 		arraycopy(digits, 0, ssn, SERIAL_NUMBER_INDEX, digits.length);
 	}

@@ -89,7 +89,7 @@ class TextProducerInternal {
 	}
 
 	private List<String> readRawWords(List<String> words, int count, int precision) {
-		return baseProducer.randomElements(words, baseProducer.randomBetween(count, count + precision));
+		return baseProducer.randomElements(words, baseProducer.randomIntBetween(count, count + precision));
 	}
 
 	public String text() {

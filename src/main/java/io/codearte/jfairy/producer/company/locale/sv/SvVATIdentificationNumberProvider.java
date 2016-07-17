@@ -41,13 +41,13 @@ public class SvVATIdentificationNumberProvider implements VATIdentificationNumbe
 
 	@Override
 	public String get() {
-		boolean isSoleTrader = baseProducer.trueOrFalse(); // Approximately 50% probablilty of a company to be of type sole trader (enskild firma)
+		boolean isSoleTrader = baseProducer.randomBoolean(); // Approximately 50% probablilty of a company to be of type sole trader (enskild firma)
 		if (isSoleTrader) {
 			return generateVatNumberForSoleTrader();
 		}
 
 		int randomGroupNumber = baseProducer.randomElement(GroupNumber.class).getValue();
-		String randomNumericBetween20And99 = leftPad(valueOf(baseProducer.randomBetween(20, 99)), 2, "0");
+		String randomNumericBetween20And99 = leftPad(valueOf(baseProducer.randomIntBetween(20, 99)), 2, "0");
 		String organizationNumberWithoutChecksum = randomGroupNumber + randomNumeric(1) + randomNumericBetween20And99 + randomNumeric(5);
 		String organizationNumber = organizationNumberWithoutChecksum + calculateChecksum(organizationNumberWithoutChecksum);
 

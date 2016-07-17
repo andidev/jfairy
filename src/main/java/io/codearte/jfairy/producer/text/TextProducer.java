@@ -103,7 +103,7 @@ public class TextProducer {
 
 	public String paragraph(int sentenceCount) {
 		return result(TextUtils.joinWithSpace(sentences(sentenceCount +
-				baseProducer.randomBetween(SENTENCE_COUNT_PRECISION_MIN, SENTENCE_COUNT_PRECISION_MAX))));
+				baseProducer.randomIntBetween(SENTENCE_COUNT_PRECISION_MIN, SENTENCE_COUNT_PRECISION_MAX))));
 	}
 
 	/**
